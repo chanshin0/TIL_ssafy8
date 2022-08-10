@@ -1,4 +1,4 @@
-T = 1
+T = 10
 for tc in range(T):
     N = 100
     s = int(input())
@@ -32,5 +32,5 @@ for tc in range(T):
     if sum_r_diagonal > ismax:
         ismax = sum_r_diagonal
     
-    print(f'#{N} {ismax}')
+    print(f'#{tc+1} {ismax}')
 

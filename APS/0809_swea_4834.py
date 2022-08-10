@@ -7,6 +7,7 @@ for tc in range(T):
         cnt[j] += 1
     # cnt = [0, 0, 0, 0, 1, 0, 1, 1, 0, 2]
     for idx, j in list(enumerate(cnt))[::-1]:
-        if max(cnt) == j:
-            print(f'#{tc+1} {idx} {j}')
+        # 같은 값이면 큰 수가 나와야 하기 때문에 cnt를 맨뒤부터 돌아서
+        if max(cnt) == j: #cnt의 최댓값이 나올떄
+            print(f'#{tc+1} {idx} {j}') # 출력하고 break
             break
