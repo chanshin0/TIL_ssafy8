@@ -1,11 +1,4 @@
-def isdecimal(num):
-    if num == 2:
-        return True
-    for l in range(1, int(num)+1, 2):
-        if num % 2 == 0 or num == 1:
-            return False
-        elif num % l == 0 and l not in [1, num]:
-            return False
-    return True
+a = [1,2]
+b=[[1,2]]
 
-print(isdecimal(127))
+print(b.count([1,2]))
