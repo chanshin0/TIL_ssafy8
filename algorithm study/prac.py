@@ -1,5 +1,3 @@
-import copy
-
 T  = int(input())
 for tc in range(T):
     n = list(map(int, input()))
@@ -8,11 +6,10 @@ for tc in range(T):
     max_n = n.copy() # 54301 54310 // 
     sorted_n = sorted(max_n)
     for i in range(len(max_n))[::-1]: # 0 1 2 3 4 
-        if max_n[i] == sorted_n[i]:
-            continue
-        else:
-            for j in range(len(max_n))[i::-1]:
-                print(j)
+        if max_n[i] != sorted_n[i]:
+            s_i = i #sorted한거랑 일치하지 않는 지점의 i
+    
+    
     
     min_n = n.copy()
 

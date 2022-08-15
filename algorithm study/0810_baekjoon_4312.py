@@ -18,7 +18,7 @@ while True:
             break
         s.append(s[-1]*3)
     
-    result = {}
+    result = []
     for i in range(1<<n):
         subset = []
         for j in range(n):
