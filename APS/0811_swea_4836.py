@@ -4,7 +4,7 @@ for tc in range(T):
     box_lst = [] # 박스 모서리 정보를 리스트로 담음
     for _ in range(N):
        box_lst.append(list(map(int, input().split())))
-    
+
     inner_box = []
     # 입력된 박스 하나씩 꺼내서
     for i in box_lst:
@@ -18,6 +18,7 @@ for tc in range(T):
             pass
         else:
             violet.append(i)
+
     # violet에는 겹치는 영역만 담겼기 떄문에 1/2한 뒤 출력
     print(f'#{tc+1} {int(len(violet)/2)}')
 
