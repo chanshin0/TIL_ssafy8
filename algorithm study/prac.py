@@ -1,19 +1,21 @@
-T  = int(input())
-for tc in range(T):
-    n = list(map(int, input()))
-    # [1,2,3,4,5]
-# 1990 9190 9910 9110 1910 1190
-    max_n = n.copy() # 54301 54310 // 
-    sorted_n = sorted(max_n)
-    for i in range(len(max_n))[::-1]: # 0 1 2 3 4 
-        if max_n[i] != sorted_n[i]:
-            s_i = i #sorted한거랑 일치하지 않는 지점의 i
-    
-    
-    
-    min_n = n.copy()
+# [기본] 3일차 - 회문 (제출용)
+def sleepy (arr):
+    M = len(arr)//2
+    if arr[M-1::-1] == arr[M:]:
+        return True
 
-            
+T = int(input())
+for tc in range(1, T+1):
+    N, M = map(int, input().split())
+    arr = [input() for _ in range(N)]
+    print(N, M)
+    print(arr)
+    answer = []
+    for i in range(N):
+        for j in range(N-M+1): # 0 1 2
+            str1 = arr[i][j:j+M]
+            if sleepy(str1) == True:
+                print(str1)
 
-    #print(f'#{tc+1}', end=" ")
-    #print( ''.join(list(map(str, min_n))), ''.join(list(map(str, #max_n))))
+
+
