@@ -1,4 +1,4 @@
+a = [1]
 
-a = [1,2,3]
-
-print(len(a[3:]))
+b = a+[1]
+print(list(range(4,4)))
