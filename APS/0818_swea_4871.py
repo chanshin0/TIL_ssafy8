@@ -13,7 +13,7 @@ for tc in range(T):
 
     stack = [S]
     answer = 0
-    for _ in range(E+1):
+    while len(stack) != 0:
         top = stack[-1]
         if top == G:            # 목적지 도착하면 종료
             answer = 1
