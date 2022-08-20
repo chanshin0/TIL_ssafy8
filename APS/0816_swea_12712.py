@@ -7,25 +7,26 @@ for tc in range(1, T+1):
     ismax = 0
     for i in range(N):
         for j in range(N):
-            for k in range(-M+1, M): # -2, -1, 1, 2
-                if k == 0:
-                    continue
-                if 0 <= i+k < N and 0 <= j+k < N:
-                    sum_t = arr[i][j]
-                    sum_t += arr[i+k][j] + arr[i][j+k] # 십자모양
-                    sum_x = arr[i][j]
-                    sum_x += arr[i+k][j+k] + arr[i+k][j-k] # X모양
-                elif i+k < 0:
-                    pass
-                elif i+k >= N:
-                    pass
-                elif j+k < 0:
-                    pass
-                elif j+k >= N:
-                    pass
+            sum_t = arr[i][j] # 10자
+            sum_x = arr[i][j] # x자
+            for k in range(1, M): # 1 2
+                if i + k < N and j + k < N and 0 <= i - k and 0 <= j - k:               # 아래
+                    sum_t += arr[i+k][j]
+                    sum_t += arr[i][j+k]
+                    sum_t += arr[i-k][j]
+                    sum_t += arr[i][j-k]
             if sum_t > ismax:
                 ismax = sum_t
+
+            # x자
+            for h in range(1, M): # 1 2
+                if i + h < N and j + h < N and 0 <= j - h and 0 <= i - h:     # 우하단
+                    sum_x += arr[i+h][j+h]
+                    sum_x += arr[i+h][j-h]
+                    sum_x += arr[i-h][j-h]
+                    sum_x += arr[i-h][j+h]
             if sum_x > ismax:
                 ismax = sum_x
 
-    print(ismax)
+    print(f'#{tc} {ismax}')
+    # 0821 품.
