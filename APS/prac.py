@@ -1,12 +1,1 @@
-def sudoku (arr):
-    cnt = [0]*10 # 카운트 arr
-    for i in range(9): # 1 2 3 4 ... 9
-        cnt[arr[i]] += 1
-    for i in range(1, 10):
-        if cnt[i] != 1:
-            return 0
-    return 1
-
-
-box = [[] for _ in range(9)]
-print(list(range(0, 9, 3)))
+print(9+5*2+1+3*3*7*6*9*1*7+1+8*6+6*1*1*5*2*4*7+4*3*8*2*6+7*8*4*5+3+7+2+6+5+1+7+6+7*3*6+2+6+6*2+4+2*2+4*9*3)

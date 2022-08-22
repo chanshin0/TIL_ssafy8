@@ -2,33 +2,35 @@
 T = int(input())
 for tc in range(1, T + 1):
     N = int(input())
-    box_lst = []  # 박스 모서리 정보를 리스트로 담음
-    for _ in range(N):
-        box_lst.append(list(map(int, input().split())))
+    arr = [[0]*10 for _ in range(10)]
 
-    inner_box = []
-    # 입력된 박스 하나씩 꺼내서
-    for i in box_lst:
-        for j in range(i[0], i[2] + 1):  # 행
-            for k in range(i[1], i[3] + 1):  # 열
-                inner_box.append([j, k])
+    # 칠하기
+    for n in range(N):
+        r1, c1, r2, c2, color = map(int, input().split())
 
-    non_violet = []  # 보라색 뺀 영역만 담긴 리스트
-    for i in inner_box:
-        if inner_box.count(i) == 1:  # 겹치는 영역 없는 칸만 집어넣음
-            non_violet.append(i)
-            # [[2, 2], [2, 3], [2, 4], [3, 2], [4, 2], [3, 5], [3, 6], [4, 5], [4, 6], [5, 3],
-            # [5, 4], [5, 5], [5, 6], [6, 3], [6, 4], [6, 5], [6, 6]]
-
-    cnt = 0  # 외각이 아닌 면 개수 체크용 변수
-    for i in non_violet:  # 하나씩 꺼내서 외각에 해당하는 면 몇 개인지 체크
-        if [i[0] + 1, i[1]] in non_violet:  # 아래쪽이 외각 아니면 cnt+1
-            cnt += 1
-        if [i[0] - 1, i[1]] in non_violet:  # 위쪽이 외각 아니면 cnt+1
-            cnt += 1
-        if [i[0], i[1] + 1] in non_violet:  # 오른쪽이 외각 아니면 cnt+1
-            cnt += 1
-        if [i[0], i[1] - 1] in non_violet:  # 왼쪽이 외각 아니면 cnt+1
-            cnt += 1
-
-    print(f'#{tc} {len(non_violet) * 4 - cnt}')  # 전체 면 개수에서 외각 아닌 면의 개수뺀거
+        for di in range(r2-r1+1): # 0 1 2
+            for dj in range(c2-c1+1): # 0 1 2
+                if arr[r1+di][c1+dj] == 0:          # 칠 안된 곳이면 칠하고
+                    arr[r1+di][c1+dj] = color
+                else:
+                    arr[r1 + di][c1 + dj] = 0      # 칠 돼있는 곳이면 0으로
+    # print(arr)
+    cnt = ans = 0
+    for i in range(10):
+        for j in range(10):
+            if arr[i][j] != 0:  # 칠 돼있는 영역일 때
+                ans += 1        # 개수 세고
+                if i+1 < 10:
+                    if arr[i+1][j] != 0:
+                        cnt += 1
+                if j+1 < 10:
+                    if arr[i][j+1] != 0:
+                        cnt += 1
+                if 0 <= i-1:
+                    if arr[i-1][j] != 0:
+                        cnt += 1
+                if 0 <= j-1:
+                    if arr[i][j-1] != 0:
+                        cnt += 1
+    # print(ans, cnt)
+    print(f'#{tc} {(ans*4)-cnt}')
