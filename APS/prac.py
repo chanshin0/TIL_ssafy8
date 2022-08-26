@@ -1,16 +1,18 @@
-T = int(input())
-for tc in range(1, T + 1):
-    N = int(input())
-    s = [list(map(int, input().split())) for i in range(N)]
+a = [1, 2, 3]
+b = [[] for _ in range(3**2)]
+print(b)
+# 11 12 13 21 22 23 31 32 33
+# 111 112 113 121 122 123 131 132 133
+c = []
+n = 2
+for i in a: # 1 2 3
+    for j in a: # 1 2 3
+        if a+b == a[-1]:
+            c.append([i, j])
+# print(c)
 
-    ismax = 0
-    box = 0  # 사각형 넓이
-    for i in range(N):
-        for j in range(N):
-            if s[i][j] == 1:
-                box += 1
-                if s[i + 1][j] == 0 and s[i][j + 1] == 0:  # 사각형의 끝일 때,
-                    if ismax < box:  # 최대값 비교하고
-                        ismax = box
-                    box = 0  # box 초기화
-    print(f'#{tc} {ismax}')
+# while True:
+for i in a: # 1 2 3
+    for j in b[:i*3]: #
+        j.append(i)
+print(b)
