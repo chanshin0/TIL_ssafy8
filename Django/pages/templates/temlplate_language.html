@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h3>1.반복문</h3>
+  {% for menu in menus %}
+    <p>{{menu}}</p>
+  {% endfor %}
+  <hr>
+  {% comment %} forloop : for문이 반복되는 횟수를 출력 {% endcomment %}
+  {% for menu in menus %}
+    <p>{{forloop.counter}} : {{menu}}</p>
+  {% endfor %}
+  <hr>
+  {% for user in empty_list %}
+    <p>{{user}}</p>
+  {% empty %}
+  {% comment %} for태그 안에 optional 사용함. 빈 리스트라면 출력. {% endcomment %}
+    <p>현재 가입한 유저가 없습니다.</p>
+  {% endfor %}
+  <hr>
+  <h3>2.조건문</h3>
+  {% if '초밥' in menus %}
+    <p>역시 저녁은 초밥이지</p>
+  {% endif %}
+  <hr>
+
+  {% for menu in menus %}
+    <p>{{forloop.counter}}번째 도는중</p>
+    {% if forloop.first %}
+      <p>첫번째 : {{menu}}</p>
+    {% else %}
+      <p>{{menu}}</p>
+    {% endif %}
+  {% endfor %}
+  <hr>
+  <h3>3.lorem ipsum</h3>
+    {% lorem %}
+    <hr>
+    {% comment %} word, paragraph {% endcomment %}
+    {% lorem 3 w %}
+    {% lorem 2 w random %}
+  <hr>
+  <h3>4.날짜 표현</h3>
+  <p>{{datetimenow}}</p>
+  <p>{% now "DATETIME_FORMAT" %}</p>
+  <p>{% now "SHORT_DATETIME_FORMAT" %}</p>
+  <p>{% now "DATE_FORMAT" %}</p>
+  <p>{% now "SHORT_DATE_FORMAT" %}</p>
+  <p>{% now "Y년 m월 d일 (D) h:i" %}</p>
+  <p>{% now "Y" as current_year %}</p>
+  <p>Copyright {{ current_year }}</p>
+  <hr>
+  <h3>5.template Filter</h3>
+  {% for message in messages %}
+    {% if message|length > 5 %}
+      <p>{{message}}는 넘나 길어</p>
+    {% else %}
+      <p>{{message}}는 {{message|length}}글자</p>
+    {% endif %}
+  {% endfor %}
+  <hr>
+  <h3>6.문자열 템플릿 필터</h3>
+  {% comment %} 문자열이 조건보다 길다면 ... 처리 {% endcomment %}
+  <p>{{my_sentence|truncatewords:3}}</p>
+  {% comment %} 문자단위로 제한 {% endcomment %}
+  <p>{{my_sentence|truncatechars:3}}</p>
+  {% comment %} 글자 단위로 제한 {% endcomment %}
+  <p>{{my_sentence|truncatechars:10}}</p>
+  <hr>
+  <h3>7.글자 관련 필터</h3>
+  <p>{{'abc'|length }}</p>
+  <p>{{'ABC'|lower }}</p>
+  <p>{{my_sentence|title }}</p>
+  <p>{{menus|random }}</p>
+</body>
+</html>
