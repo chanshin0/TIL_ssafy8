@@ -19,5 +19,5 @@ from pages import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('dinner/', views.dinner),
+    path('dinner/<menu>/<members>', views.dinner),
 ]

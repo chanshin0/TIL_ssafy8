@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\multicampus\Desktop\online_practice\ssafy\TIL(To github)\Django\0830_HWS\venv
+set VIRTUAL_ENV=C:\Users\dongchan\Desktop\ssafy8\04_TIL\Django\0830_HWS\venv
 
 if not defined PROMPT set PROMPT=$P$G
 
@@ -25,6 +25,7 @@ if defined _OLD_VIRTUAL_PATH set PATH=%_OLD_VIRTUAL_PATH%
 if not defined _OLD_VIRTUAL_PATH set _OLD_VIRTUAL_PATH=%PATH%
 
 set PATH=%VIRTUAL_ENV%\Scripts;%PATH%
+set VIRTUAL_ENV_PROMPT=(venv) 
 
 :END
 if defined _OLD_CODEPAGE (
