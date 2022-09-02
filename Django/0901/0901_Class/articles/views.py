@@ -8,8 +8,8 @@ from .models import Article
 
 def index(request):
     # 최신글 순서로 정렬하기
-    # articles = Article.objects.all()[::-1]
-    articles = Article.objects.order_by('-pk')
+    articles = Article.objects.all()[::-1]
+    # articles = Article.objects.order_by('-pk')
 
     context = {
         'articles' : articles,
