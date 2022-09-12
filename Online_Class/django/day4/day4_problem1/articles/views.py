@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from urllib.request import Request
+from django.shortcuts import render, redirect
 from .models import Article
 
 # Create your views here.
@@ -22,3 +23,16 @@ def create(request):
     article.save()
     
     return render(request, 'create.html')
+
+def detail(request, pk):
+    article = Article.objects.get(pk=pk)
+    context = {
+        'pk':pk,
+        'article':article,
+    }
+    return render(request, 'detail.html', context)
+
+def delete(request, pk):
+    article = Article.objects.get(pk=pk)
+    article.delete()
+    return redirect('articles:index')
