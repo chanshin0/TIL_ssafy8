@@ -1,21 +1,40 @@
-def inorder(n):
-    if 0 < n <= V:
-        return inorder(2 * n) + tree[n] + inorder(2 * n + 1)
-    else:
-        return ''
+# 나무 탈출
+def dfs(l):
+    global cnt
+    if l == 1:
+        cnt += sum(visited)
+        return
+    visited[l] = 1
+    for i in node[l]:
+        if not visited[i]:
+            dfs(i)
 
 
-T = 10
-for tc in range(1, T + 1):
-    V = int(input())  # 정점 수
-    tree = [0] * (V + 1)  # 정점 문자
+import sys
 
-    # 완전 이진 트리 저장
-    for _ in range(V):
-        n, s, *c = input().split()
-        tree[int(n)] = s
+sys.setrecursionlimit(10 ** 5)
+N = int(sys.stdin.readline())
+node = [[] for _ in range(N + 1)]
+
+for n in range(N - 1):
+    a, b = map(int, sys.stdin.readline().split())
+    node[a].append(b)
+    node[b].append(a)
+# [[], [8, 4, 3], [3], [1, 2], [1, 7, 6], [6], [4, 5], [4], [1]]
 
 
-    root = 1
-    result = inorder(root)
-    print(f'#{tc} {result}')
+leaf = []
+for i in range(2, N + 1):
+    if len(node[i]) == 1:
+        leaf.append(i)
+
+visited = [0] * (N + 1)
+cnt = 0
+for i in leaf:
+    dfs(i)
+    visited = [0] * (N + 1)
+
+if cnt % 2:
+    print('Yes')
+else:
+    print('NO')
