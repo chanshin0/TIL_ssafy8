@@ -1,53 +1,30 @@
 # 전쟁 - 전투
+def dfs(i, j, S):
+    visited[i][j] = 1
+    global cnt
+    for di, dj in delta:
+        ni = i+di
+        nj = j+dj
+        if 0 <= ni < M and 0 <= nj < N and visited[ni][nj] == 0 and battle[ni][nj] == S:
+            cnt += 1
+            dfs(ni, nj, S)
+
+
 N, M = map(int, input().split())
 battle = [list(input()) for _ in range(M)]
 
-w = []
-b = []
-cntW = 0
-cntB = 0
-for i in range(N):
-    for j in range(M):
-      if battle[i][j] == 'W':
-        cntW += 1
-        b.append(cntB)
-        cntB = 0
-      elif battle[i][j] == 'B':
-        cntB += 1
-        w.append(cntW)
-        cntW = 0
-w.append(cntW)
-b.append(cntB)
-# [1, 8, 0, 0, 0, 0, 0, 0, 0, 7]
-# [0, 1, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0]
+W = 0
+B = 0
+visited = [[0]*N for _ in range(M)]
+delta = [[0,1],[1,0],[0,-1],[-1,0]]
+for i in range(M):
+    for j in range(N):
+        if visited[i][j] == 0:
+            cnt = 1
+            dfs(i,j,battle[i][j])
+            if battle[i][j] == 'W':
+                W += cnt**2
+            else:
+                B += cnt**2
 
-ansW = 0
-ansB = 0
-temp = 0
-isol = 0
-for i in range(len(w)):
-    if w[i] != 0:
-        temp += w[i]
-        isol = 0
-    else:
-        isol += 1
-        if isol >= N:
-            ansW += temp**2
-            temp = 0
-ansW += temp**2
-temp = 0
-isol = 0
-
-for i in range(len(b)):
-    if b[i] != 0:
-        temp += b[i]
-        isol = 0
-    else:
-        isol += 1
-        if isol >= N:
-            ansB += temp**2
-            temp = 0
-ansB += temp**2
-
-print(ansW, ansB)
-
+print(W, B)
