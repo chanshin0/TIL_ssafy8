@@ -35,3 +35,4 @@ class MovieForm(forms.ModelForm):
         model = Movie
         fields = '__all__'
         # exclude = ('title',)
+        # 이러면 폼에 title 제출하는 곳은 안뜸

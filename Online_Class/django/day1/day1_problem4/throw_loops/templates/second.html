@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  {% if first %}
+  <h2>catch! I catch {{first}}</h2>
+  {% else %}
+  <h2>catch! I catch nothing</h2>
+  {% endif %}
+  <form action="/third" method="GET">
+    <label for="second">throw!</label>
+    <input type="text" id='second' name='second'>
+    <label for="second2">twice!</label>
+    <input type="text" id='second2' name='second2'>
+    <input type="submit" value='휙'>
+  </form>
+</body>
+</html>

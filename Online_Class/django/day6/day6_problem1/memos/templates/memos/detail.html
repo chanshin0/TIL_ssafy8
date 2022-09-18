@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>요약 : {{memo.summary}}</p>
+<p>메모 : {{memo.memo}}</p>
+<p>작성시각 : {{memo.created_at}}</p>
+<p>수정시각 : {{memo.updated_at}}</p>
+<form action="{% url 'memos:delete' memo.pk %}" method='POST'>
+  {% csrf_token %}
+  <input type="submit" value='삭제'>
+</form>
+<a href="{% url 'memos:update' memo.pk %}">[수정]</a>
+<hr>
+<a href="{% url 'memos:index' %}">[뒤로가기]</a>
+{% endblock content %}

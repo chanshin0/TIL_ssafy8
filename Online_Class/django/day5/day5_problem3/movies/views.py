@@ -1,4 +1,3 @@
-from tkinter import E
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_safe, require_http_methods, require_POST
 from .models import Movie

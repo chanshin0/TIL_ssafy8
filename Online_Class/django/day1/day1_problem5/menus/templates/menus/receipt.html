@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h3>
+    {% if order in menu %}
+    {{order|capfirst}} 주문 받았습니다!
+    {% else %}
+    {{order|capfirst}}은/는 주문 불가합니다
+    {% endif %}
+  </h3>
+</body>
+</html>
