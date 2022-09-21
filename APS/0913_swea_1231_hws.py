@@ -26,3 +26,4 @@ for tc in range(10):
     print(f'#{tc+1}', end=' ')
     inorder(1)
     print()
+    # 중위순회
