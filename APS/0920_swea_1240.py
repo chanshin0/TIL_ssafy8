@@ -13,14 +13,20 @@ for tc in range(T):
             check = ''.join(check)
             if check in dict:
                 ### 여기서 len 8될떄까지 while문
-                print(check)
-                ans += str(dict.get(check))
+                while len(ans) != 8:
+                    check = code[i][j:j + 7]
+                    check = ''.join(check)
+                    if dict.get(check) != None:     # 민약 암호가 반환되지 않으면
+                        ans += str(dict.get(check))
+                        j += 7
+                    else:                           # ans초기화 하고 종료
+                        ans = ''
+                        break
                 if len(ans) == 8:
                     break
         if len(ans) == 8:
             break
 
-    print(ans)
     ans = '0'+ans
     temp = 0
     for i in range(1,9):
@@ -28,7 +34,6 @@ for tc in range(T):
             temp += int(ans[i])*3
         else:
             temp += int(ans[i])
-        print(temp)
     if not temp%10:
         print(f'#{tc+1} {sum(map(int, ans))}')
     else:
