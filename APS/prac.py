@@ -1,2 +1,2 @@
-a = '123579'
-print(sum(map(int, a)))
+a =[[]]
+print(bool(a))
