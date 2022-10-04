@@ -1,50 +1,21 @@
-# N-Queen
-def valid(i, j):
-    for n in range(N):
-        if board[i][n] == 1:
-            return 0
-        if board[n][j] == 1:
-            return 0
-    for di, dj in delta2:
-        ni, nj = i+di, j+dj
-        while 0 <= ni < N and 0 <= nj < N:
-            if board[ni][nj] == 1:
-                return 0
-            ni += di
-            nj += dj
-    return 1
+# 일곱 난쟁이
+# 9개 중에 7개 뽑기 (조합)
+def combination(s, n, r):   # 이번에 정하는 index자리, n개 중 r개 뽑는 조합
+    if s == r:
+        print(comb)
 
-def dfs(i, j):
-    global cnt
-    if cnt == N:
-        return
-    for di, dj in delta:
-        ni, nj = i + di, j + dj
-        if 0 <= ni < N and 0 <= nj < N and board[ni][nj] == 0:
-            if valid(ni, nj):
-                board[ni][nj] = 1
-                cnt += 1
-                dfs(ni, nj)
-        if cnt == N:
-            break
+    else:
+        for i in range(s, n):              # 모든 원소에 대해서
+            if not used[i]:             # 사용되지 않은 원소라면
+                comb[s] = heights[i]    # 조합에 사용
+                used[i] = 1             # 사용 표시
+                combination(s+1, n, r)  # 다음 자리 구하러 보냄
+                used[i] = 0
 
+heights = [1,2,3,4]
+l = len(heights)
+r = 2
 
-T = int(input())
-for tc in range(T):
-    N = int(input())
-    board = [[0] * N for _ in range(N)]
-
-    ans = 0
-    delta = [[1,2],[1,-2],[2,-1],[2,1],[-1,2],[-1,-2],[-2,-1],[-2,1]]
-    delta2 = [[-1,1],[-1,-1]]
-    k = 0
-    while k != N:
-        board[0][k] = 1
-        cnt = 1
-        dfs(0, k)
-        if cnt == N:
-            ans += 1
-        k += 1
-        board = [[0] * N for _ in range(N)]
-
-    print(f'#{tc+1} {ans}')
+comb = [0]*r
+used = [0]*l
+combination(0, l, r)
