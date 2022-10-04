@@ -10,7 +10,7 @@ def prim1(r, V):
         for i in range(V+1):        # MST에 포함된 정점 i와 인접한 정점j 중 MST에 포함될 정점 구하기(간선의 가중치가 제일 작은애)
             if MST[i] == 1:
                 for j in range(V+1):
-                    if adjM[i][j] >0 and MST[j] == 0 and minV > adjM[i][j]:
+                    if adjM[i][j] > 0 and MST[j] == 0 and minV > adjM[i][j]:
                         u = j
                         minV = adjM[i][j]
         s += minV

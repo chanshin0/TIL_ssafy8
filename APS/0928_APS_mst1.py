@@ -20,7 +20,7 @@ adjM = [[0]*(V+1) for _ in range(V+1)]      # 인접행렬
 adjL = [[] for _ in range(V+1)]             # 인접 리스트
 
 for _ in range(E):
-    u ,v, w = map(int, input().split())
+    u, v, w = map(int, input().split())
     adjM[u][v] = w
     adjM[v][u] = w                       # 무향 그래프일 경우
     adjL[u].append((v, w))
