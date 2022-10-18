@@ -23,7 +23,7 @@ SELECT * FROM users;
 -- rowid 조회하기. 이렇게 명시를 하면 조회된다.
 SELECT rowid, first_name FROM users;
 
--- 2-1. Sorting rows. 정렬하기
+-- 1-1. Sorting rows. 정렬하기
 -- ORDER BY clause
 -- 이름과 나이를 나이가 어린 순으로 조회하기, 오름차순은 디폴트이기 때문에 ASC안써도 됨.
 SELECT first_name, age FROM users ORDER BY age ASC;
@@ -34,9 +34,9 @@ SELECT first_name, age FROM users ORDER BY age DESC;
 SELECT first_name, age, balance FROM users ORDER BY age ASC, balance DESC ;
 -- 참고, NULL은 가장 작은 값으로 봄.
 
--- 2-2. Filtering data. 데이터를 필터링하여 중복제거, 조건설정 등 쿼리를 제어하기
+-- 1-2. Filtering data. 데이터를 필터링하여 중복제거, 조건설정 등 쿼리를 제어하기
 
--- 2-2-1. SELECT DISTINCT. 중복을 제거한다
+-- 1-2-1. SELECT DISTINCT. 중복을 제거한다
 SELECT country FROM users;  
 SELECT DISTINCT country FROM users;
 -- 지역순으로 내림차순 하여 중복없이 조회하기
@@ -47,14 +47,14 @@ SELECT DISTINCT first_name, country FROM users;
 SELECT DISTINCT first_name, country FROM users ORDER BY country DESC;
 -- 참고. NULL도 중복으로 간주해서 한 행만 조회됨
 
--- 2-2-2. WHERE claus. 특정 조건을 지정해서 조회
+-- 1-2-2. WHERE claus. 특정 조건을 지정해서 조회
 -- 연산자 활용가능.
 
 SELECT first_name, age, balance FROM users WHERE age >= 30;
 -- 나이가 30살 이상인 사람들의 이름, 나이 ,계좌잔고 조회하기
 SELECT first_name, age, balance FROM users WHERE age >= 30 AND balance >= 500000;
 
--- 2-2-3. LIKE operator. 패턴 일치를 기반으로 데이터를 조회. but, 대소문자는 구분하지 않는다.
+-- 1-2-3. LIKE operator. 패턴 일치를 기반으로 데이터를 조회. but, 대소문자는 구분하지 않는다.
 -- 두가지의 wildcards가 있다.
 -- 1) %(percent) : 0개 이상의 문자가 올 수 있음을 의미. 도%, %도, %도%
 -- 2) _(underscore) : 단일 문자가 있음을 의미. _하나당 딱 한글자 의미
@@ -71,13 +71,13 @@ SELECT first_name, age FROM users WHERE age LIKE '2_';
 SELECT first_name, phone FROM users WHERE phone LIKE '%-51__-%';
 -- 중간 4자리가 51로 시작하는 사람들 조회
 
--- 2-2-4. IN operator
+-- 1-2-4. IN operator
 SELECT first_name, country FROM users WHERE country IN ('경기도', '강원도');
 SELECT first_name, country FROM users WHERE country = '경기도' OR country = '강원도';
 
 SELECT first_name, country FROM users WHERE country NOT IN ('경기도', '강원도');
 
--- 2-2-5. Between operator
+-- 1-2-5. Between operator
 SELECT first_name, age FROM users WHERE age BETWEEN 20 AND 30;
 SELECT first_name, age FROM users WHERE age >= 20 AND age <= 30;
 
@@ -85,13 +85,13 @@ SELECT first_name, age FROM users WHERE age NOT BETWEEN 20 AND 30;
 SELECT first_name, age FROM users WHERE age < 20 OR age > 30;
 -- 부정
 
--- 2-3. LIMIT clause. 결과에서 행 수를 제한할 수 있다.
+-- 1-3. LIMIT clause. 결과에서 행 수를 제한할 수 있다.
 SELECT rowid, first_name FROM users LIMIT 10;
 
 SELECT first_name, balance FROM users ORDER BY balance DESC LIMIT 10;
 -- 계좌잔고가 가장 많은 10명 조회하라
 
--- 2-3-1. OFFSET keyword
+-- 1-3-1. OFFSET keyword
 SELECT rowid, first_name FROM users LIMIT 10 OFFSET 10;
 -- 앞에 10개(LIMIT) 점프하고, 11번째부터 20번째까지(10개) 조회하라
 
@@ -112,6 +112,8 @@ SELECT last_name, COUNT(*) AS number_of_name FROM users GROUP BY last_name;
 -- 각 성씨가 몇 명씩 있는지 조회하라
 -- 사실.. (*)이든 (name)이든 조회되는 결과는 똑같다. 또한, AS를 활용해 컬럼의 이름을 지정해 줄 수 있다.
 ----------------------여기까지 SELECT-------------------------
+
+
 -- 2. Changing data
 -- INSERT, UPDATE, DELETE. SELECT에 비해 비교적 간단하다.
 
