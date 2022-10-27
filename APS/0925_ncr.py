@@ -14,13 +14,13 @@ def comb(n, r, s):
             com[r-1] = a[i]
             comb(n, r-1, i+1)
 
-def pi(n, r):
-    if r == 0:
+def pi(n, r, s):
+    if r == s:
         print(*com[::-1])
     else:
         for i in range(n):
-            com[r-1] = a[i]
-            pi(n, r-1)
+            com[s] = a[i]
+            pi(n, r, s+1)
 
 def perm(n, r, k):
     if r == 0:
@@ -42,8 +42,8 @@ r = 2
 # com = [0]*r
 # comb(n, r, 0)
 # print('```````````````````````````')
-# com = [0]*r
-# pi(n ,r)
-# print('```````````````````````````')
 com = [0]*r
-perm(n, r, r)
+pi(n ,r, 0)
+# print('```````````````````````````')
+# com = [0]*r
+# perm(n, r, r)
