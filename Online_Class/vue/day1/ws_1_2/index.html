@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>회문 검사기</h1>
+      <input type="text" v-model="userInput" />
+      <button v-on:click="checkInput">확인하기</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.min.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          userInput: "",
+        },
+        methods: {
+          palindrome(){
+            const reverse = this.userInput.split('').reverse().join('')
+            if (reverse===this.userInput){
+              return true;
+            }
+          },
+          checkInput() {
+            if (this.userInput) {
+              if (this.palindrome() ) {
+                alert("회문입니다");
+              } else {
+                alert("회문이 아닙니다");
+              }
+            } else {
+              alert("입력값이 없습니다");
+            }
+          },
+        },
+      });
+      // const inputTag = document.querySelector("#str")
+      // const btnTag = document.querySelector("#check")
+      // btnTag.addEventListener("click", function (event) {
+      //   const txt = inputTag.value
+      //   const r_txt = txt.split('').reverse().join('')
+      //   if (txt){
+      //     if (txt==r_txt){
+      //       alert("회문입니다")
+      //     } else {
+      //       alert("회문이 아닙니다")
+      //     }
+      //   } else {
+      //     alert("입력값이 없습니다")
+      //   }
+      // })
+    </script>
+  </body>
+</html>
