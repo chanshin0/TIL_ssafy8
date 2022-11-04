@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{person}}의 프로필</h1>
+{% comment %} with : 매번 쓰기 겁나 기니까 변수로 지정해서 앞으로 이렇게 쓰겠다. {% endcomment %}
+{% with followings=person.followings.all followers=person.followers.all %}
+  <div>
+    <div id="follow-count">
+      <div>팔로잉: {{followings|length}} / 팔로워: {{followers|length}} </div>
+    </div>
+    {% comment %} request.user(나)한테는 팔로우 뜨면 안되니까 {% endcomment %}
+    {% if request.user != person %}
+      <div>
+        <form id="follow-form" data-user-id="{{person.pk}}">
+          {% csrf_token %}
+          {% if request.user in followers %}
+            <button>언팔로우</button>
+          {% else %}
+            <button>팔로우</button>
+          {% endif %}
+        </form>
+      </div>
+    {% endif %}
+  </div>
+
+<a href="{% url 'community:index' %}">뒤로가기</a>
+{% endwith %}
+{% endblock content %}
+
+{% block script %}
+  <script>
+    const form = document.querySelector("#follow-form");
+    const csrftoken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+
+    form.addEventListener("submit", (event)=>{
+      event.preventDefault();
+      const userId = event.target.dataset.userId;
+      axios({
+        method:"post",
+        url: `/accounts/${userId}/follow/`,
+        headers: {"X-CSRFToken":csrftoken},
+      }).then((response)=>{
+        const isFollowed = response.data.isFollowed;
+        const followers_count = response.data.followers_count;
+        const followings_count = response.data.followings_count;
+        const followBtn = document.querySelector("#follow-form > button")
+        const followCountDiv = document.querySelector("#follow-count > div")
+        if (isFollowed === true){
+          followBtn.innerText = "언팔로우";
+        } else {
+          followBtn.innerText = "팔로우";
+        }
+        followCountDiv.innerText = `팔로잉 : ${followings_count} / 팔로워 : ${followers_count}`
+      });
+    });
+  </script>
+{% endblock script %}
