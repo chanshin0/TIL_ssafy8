@@ -1,0 +1,24 @@
+canvas {
+  width: 800px;
+  height: 800px;
+  border: 5px solid black;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: block;
+}
+
+.menu-container {
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.reset, .palette {
+  width: 200px;
+  height: 100px;
+  font-size:xx-large;
+}
