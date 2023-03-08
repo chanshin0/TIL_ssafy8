@@ -2,7 +2,7 @@ const canvas = document.querySelector("canvas")
 const context = canvas.getContext("2d")
 canvas.width = 800
 canvas.height = 800
-context.lineWidth = 3
+context.lineWidth = 6
 const modeBtn = document.getElementById("mode-btn")
 
 
